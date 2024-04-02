@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FullCalenderController; 
+use App\Http\Controllers\HorariosLivresController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +33,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::controller(FullCalenderController::class)->group(function(){
+
+    Route::get('fullcalender', 'index');
+
+    Route::post('fullcalenderAjax', 'ajax');
+
+    Route::get('fullcalender', 'batata'); 
+
+});
+
+Route::get('/horariosLivres/2', [HorariosLivresController::class, 'index']); 
 
 require __DIR__.'/auth.php';
